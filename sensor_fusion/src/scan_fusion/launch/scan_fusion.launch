@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="scan_fusion" type="scan_fusion_node.py" name="scan_fusion"/>
+</launch>

@@ -1,0 +1,2 @@
+robotModels/base/base_rover:robotModels/base/realsense_gazebo_plugin:robotModels/humanoid/humanoid_rover:scan_fusion
+-DCATKIN_DEVEL_PREFIX=/home/robotlab/Documents/sensor_fusion/sensor_fusion/devel -DCMAKE_INSTALL_PREFIX=/home/robotlab/Documents/sensor_fusion/sensor_fusion/install -G Unix Makefiles

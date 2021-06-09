@@ -1,0 +1,33 @@
+<launch>
+    <!-- run pointcloud_to_laserscan nde -->
+    <arg name="pointcloud_topic" default="/camera/depth/color/points"/>
+    <arg name="pointcloud_scan_topic" default="/depth_scan"/>
+    <arg name="lidar_scan_topic" default="/scan"/>
+    <arg name="fusion_frame" default="base_link"/>
+    
+    
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
+    <remap from="cloud_in" to="$(arg pointcloud_topic)"/>
+    <remap from="scan" to="$(arg pointcloud_scan_topic)"/>
+        <rosparam>
+            target_frame: base_scan
+            transform_tolerance: 0.01
+            min_height: 0.0
+            max_height: 2.0
+            angle_min: -1.57
+            angle_max: 1.57
+            angle_increment: 0.0175
+            scan_time: 0.3333
+            range_min: 0.45
+            range_max: 4.0
+            use_inf: true
+            concurrency_level: 1
+        </rosparam>
+    </node>	<!--comment  -->
+    
+    <param name="pointcloud_scan_topic" type="string" value="$(arg pointcloud_scan_topic)"/>
+    <param name="lidar_scan_topic" type="string" value="$(arg lidar_scan_topic)"/>
+    
+    <node pkg="scan_fusion" type="scan_fusion_node_v2.py" name="scan_fusion">
+    </node>
+</launch>
